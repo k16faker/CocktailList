@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import './App.css';
+import RootPage from './pages/RootPage';
+import FullBoardPage from './pages/FullBoardPage';
+import DetailPostPage from './pages/DetailPostPage';
 
 function App() {
+
+  const BrowserRouter = createBrowserRouter([
+    {
+      path: '/',
+      element: <RootPage />,
+      children:[
+        {
+          path: '/',
+          element:<FullBoardPage />,
+        },
+        {
+          path: 'detail/:no',
+          element: <DetailPostPage />
+        }
+      ],
+      errorElement: <div>Not Found</div>
+    }
+  ]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={BrowserRouter}></RouterProvider>
     </div>
   );
 }
