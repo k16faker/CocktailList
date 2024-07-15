@@ -4,6 +4,7 @@ import './App.css';
 import RootPage from './pages/RootPage';
 import FullBoardPage from './pages/FullBoardPage';
 import DetailPostPage from './pages/DetailPostPage';
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
 
@@ -15,6 +16,10 @@ function App() {
         {
           path: '/',
           element:<FullBoardPage />,
+        },
+        {
+          path: 'category',
+          element:<CategoryPage />,
         },
         {
           path: 'detail',

@@ -80,8 +80,8 @@ const DetailPostPage: React.FC = () => {
       <img src={strDrinkThumb} alt={strDrink} />
       <h1>{strDrink}</h1>
       <p>Glass: {strGlass}</p>
-      <p>Alcoholic: {strAlcoholic}</p>
-      <h2>Ingredients:</h2>
+      <p>Alcoholic: {strAlcoholic == "Alcoholic" ? "Yes" : "No"}</p>
+      <p>Ingredients:</p>
       <CustomUl>
         {ingredientsWithMeasures.map((item, index) => (
           <li key={index}>{item}</li>
@@ -115,6 +115,8 @@ const Container = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
     font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   img {

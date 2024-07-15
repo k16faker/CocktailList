@@ -13,7 +13,7 @@ const SimplePost: React.FC<SimplePostProps> = ({imgUrl, name, no}) => {
   const navigate = useNavigate();
 
   return (
-      <Link to={`detail?no=${no}`}>
+      <Link to={`/detail?no=${no}`}>
         <SimplePostdli>
           <Image src={imgUrl} alt={name} />
           <p>{name}</p>

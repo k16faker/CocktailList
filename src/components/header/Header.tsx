@@ -1,7 +1,13 @@
 import styled from "styled-components";
-import { Link, LinkProps } from "react-router-dom";
+import { Link, LinkProps, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Header:React.FC = () => {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState<string>("");
+
+
+
   return (
     <FullHeaderdiv>
       <PartDiv>
@@ -11,8 +17,8 @@ const Header:React.FC = () => {
       </PartDiv>
       <PartDiv>
         <div>
-          <input type="text" placeholder="Search.." />
-          <button>Search</button>
+          <input type="text" placeholder="Search.." onChange={(e) => setSearch(e.target.value)} />
+          <button onClick={() => console.log(search)}>Search</button>
         </div>
       </PartDiv>
       <RightDiv>
@@ -20,7 +26,9 @@ const Header:React.FC = () => {
           <CustomLink to="/">
             <li>Home</li>
           </CustomLink>
-          <li>Category</li>
+          <CustomLink to="/category">
+            <li>Category</li>
+          </CustomLink>
           <li>Alchohol</li>
           <li>Contact</li>
         </ul>
