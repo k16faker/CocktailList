@@ -17,7 +17,7 @@ function App() {
           element:<FullBoardPage />,
         },
         {
-          path: 'detail/:no',
+          path: 'detail',
           element: <DetailPostPage />
         }
       ],

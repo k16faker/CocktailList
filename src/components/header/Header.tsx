@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 
-const Header = () => {
+const Header:React.FC = () => {
   return (
     <FullHeaderdiv>
       <PartDiv>
-        <h1>Whiskeys</h1>
+        <CustomLink to="/">
+          <h1>Cocktails</h1>
+        </CustomLink>
       </PartDiv>
       <PartDiv>
         <div>
@@ -15,11 +17,11 @@ const Header = () => {
       </PartDiv>
       <RightDiv>
         <ul>
-          <Link to="/">
+          <CustomLink to="/">
             <li>Home</li>
-          </Link>
-          <li>Products</li>
-          <li>About</li>
+          </CustomLink>
+          <li>Category</li>
+          <li>Alchohol</li>
           <li>Contact</li>
         </ul>
       </RightDiv>
@@ -100,5 +102,19 @@ const RightDiv = styled.div`
       background-color: #f1f1f1;
       transition: 0.3s;
     }
+  }
+`;
+
+const CustomLink = styled(Link)<LinkProps>`
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+
+  &:hover {
+    color: inherit;
+  }
+
+  &:active {
+    color: inherit;
   }
 `;
