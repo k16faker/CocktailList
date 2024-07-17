@@ -5,6 +5,7 @@ import RootPage from './pages/RootPage';
 import FullBoardPage from './pages/FullBoardPage';
 import DetailPostPage from './pages/DetailPostPage';
 import CategoryPage from './pages/CategoryPage';
+import GlassPage from './pages/GlassPage';
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
         {
           path: 'category',
           element:<CategoryPage />,
+        },
+        {
+          path: 'glass',
+          element:<GlassPage />,
         },
         {
           path: 'detail',

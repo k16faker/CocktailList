@@ -12,32 +12,32 @@ interface Cocktail {
     strDrinkThumb: string;
 }
 
-const CategoryPage = () => {
-    const categorySelectRef = useRef<HTMLSelectElement>(null);
-    const [category, setCategory] = useState<Cocktail[] | undefined>();
+const GlassPage = () => {
+    const glassSelectRef = useRef<HTMLSelectElement>(null);
+    const [glass, setGlass] = useState<Cocktail[] | undefined>();
 
     const getCategories = async () => {
-        const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categorySelectRef.current?.value}`);
-        console.log(categorySelectRef.current?.value);
+        const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glassSelectRef.current?.value}`);
+        console.log(glassSelectRef.current?.value);
         console.log(response.data.drinks);
-        setCategory(response.data.drinks);
+        setGlass(response.data.drinks);
     };
 
 
   return (
     <Container>
-      <h1>Category Page</h1>
+      <h1>Glass Page</h1>
       <SmallHeader>
-        <CustomSelect ref={categorySelectRef}>
-            <option value="Ordinary_drink">Ordinary Drink</option>
-            <option value="Cocktail">Cocktail</option>
-            <option value="Shake">Shake</option>
-            <option value="Beer">Beer</option>
+        <CustomSelect ref={glassSelectRef}>
+            <option value="cocktail_glass">Cocktail Glass</option>
+            <option value="highball_glass">Highball Glass</option>
+            <option value="collins_glass">Collins Glass</option>
+            <option value="old-fashioned_glass">Old-Fashioned Glass</option>
         </CustomSelect>
         <CustomBtn onClick={getCategories}>Search</CustomBtn>
       </SmallHeader>
       <CustomUl>
-            {category && category.map((item, index) => {
+            {glass && glass.map((item, index) => {
                 return (
                     <SimplePost key={index} name={item.strDrink} imgUrl={item.strDrinkThumb} no={Number(item.idDrink)} />
                 );
@@ -47,7 +47,7 @@ const CategoryPage = () => {
   )
 }
 
-export default CategoryPage
+export default GlassPage
 
 
 const Container = styled.div`

@@ -29,8 +29,10 @@ const Header:React.FC = () => {
           <CustomLink to="/category">
             <li>Category</li>
           </CustomLink>
-          <li>Alchohol</li>
-          <li>Contact</li>
+          <CustomLink to="/glass">
+            <li>Glass</li>
+          </CustomLink>
+          <li>Alcoholic</li>
         </ul>
       </RightDiv>
     </FullHeaderdiv>
