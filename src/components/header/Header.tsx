@@ -7,6 +7,12 @@ const Header:React.FC = () => {
   const [search, setSearch] = useState<string>("");
 
 
+  const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate(`/search?name=${search}`);
+  };
+
+
 
   return (
     <FullHeaderdiv>
@@ -16,10 +22,10 @@ const Header:React.FC = () => {
         </CustomLink>
       </PartDiv>
       <PartDiv>
-        <div>
+        <form onSubmit={searchHandler}>
           <input type="text" placeholder="Search.." onChange={(e) => setSearch(e.target.value)} />
-          <button onClick={() => console.log(search)}>Search</button>
-        </div>
+          <button type="submit">Search</button>
+        </form>
       </PartDiv>
       <RightDiv>
         <ul>
@@ -32,7 +38,7 @@ const Header:React.FC = () => {
           <CustomLink to="/glass">
             <li>Glass</li>
           </CustomLink>
-          <li>Alcoholic</li>
+          <li>Based</li>
         </ul>
       </RightDiv>
     </FullHeaderdiv>
@@ -82,7 +88,7 @@ const PartDiv = styled.div`
     transition: 0.3s;
   }
 
-  div {
+  form {
     display: flex;
   }
 `;

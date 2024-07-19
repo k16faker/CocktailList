@@ -6,6 +6,7 @@ import FullBoardPage from './pages/FullBoardPage';
 import DetailPostPage from './pages/DetailPostPage';
 import CategoryPage from './pages/CategoryPage';
 import GlassPage from './pages/GlassPage';
+import SearchedPage from './pages/SearchedPage';
 
 function App() {
 
@@ -25,6 +26,10 @@ function App() {
         {
           path: 'glass',
           element:<GlassPage />,
+        },
+        {
+          path: 'search',
+          element:<SearchedPage />,
         },
         {
           path: 'detail',
