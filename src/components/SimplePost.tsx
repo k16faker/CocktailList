@@ -29,7 +29,8 @@ const SimplePostdli = styled.li`
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px #888888;
-  width: 90%;
+  width: 250px;
+  padding:5px;
   display:inline-block;
   text-align: center;
   margin-top: 10px;
