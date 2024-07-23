@@ -38,7 +38,9 @@ const Header:React.FC = () => {
           <CustomLink to="/glass">
             <li>Glass</li>
           </CustomLink>
-          <li>Based</li>
+          <CustomLink to="/login">
+            <li>Login</li>
+          </CustomLink>
         </ul>
       </RightDiv>
     </FullHeaderdiv>

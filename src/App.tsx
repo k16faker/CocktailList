@@ -7,6 +7,7 @@ import DetailPostPage from './pages/DetailPostPage';
 import CategoryPage from './pages/CategoryPage';
 import GlassPage from './pages/GlassPage';
 import SearchedPage from './pages/SearchedPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
 
@@ -34,7 +35,11 @@ function App() {
         {
           path: 'detail',
           element: <DetailPostPage />
-        }
+        },
+        {
+          path: 'login',
+          element:<LoginPage />,
+        },
       ],
       errorElement: <div>Not Found</div>
     }
