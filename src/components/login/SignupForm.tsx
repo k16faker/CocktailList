@@ -3,46 +3,50 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 import { Link, LinkProps, useNavigate } from 'react-router-dom'
-
 import { UserAuth } from '../../context/AuthContext'
 
-const LoginForm = () => {
+const SignupForm:React.FC = () => {
+
+  const { user, signUp } = UserAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
 
-  const { user, logIn } = UserAuth();
-
-  const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const SignupHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await logIn(email, password);
-      alert("로그인이 완료되었습니다.");
-      navigate("/");
+      await signUp(email, password, nickname);
+      if(email === "" || password === "" || nickname === ""){
+        alert("모든 항목을 입력해주세요.");
+        return;
+      };
+      alert("회원가입이 완료되었습니다.");
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
   };
 
-
   return (
     <Container>
-        <h1>Login</h1>
-        <CustomForm onSubmit={loginHandler}>
-            <CustomInput type="email" placeholder="Username" onChange={(e) => setEmail(e.target.value)} />
-            <CustomInput type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <CustomLoginBtn type="submit">Login</CustomLoginBtn>
+        <h1>SignUp</h1>
+        <CustomForm onSubmit={SignupHandler}>
+            <CustomInput type="email" placeholder="Username" onChange={(e) => setEmail(e.target.value)}/>
+            <CustomInput type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <CustomInput type="text" placeholder="Nickname" onChange={(e) => setNickname(e.target.value)} />
+            <CustomLoginBtn type="submit" >SignUp</CustomLoginBtn>
         </CustomForm>
 
-        <CustomLink to="/signup">
-            <p>or Signup</p>
+        <CustomLink to="/login">
+            <p>or Login</p>
         </CustomLink>
     </Container>
   )
 }
 
-export default LoginForm
+export default SignupForm
 
 
 const Container = styled.div`

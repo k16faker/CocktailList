@@ -1,16 +1,23 @@
 import styled from "styled-components";
 import { Link, LinkProps, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { UserAuth } from "../../context/AuthContext";
 
 const Header:React.FC = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState<string>("");
+
+  const {user, logOut} = UserAuth();
 
 
   const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate(`/search?name=${search}`);
   };
+
+  const logoutHandler = () => {
+    logOut();
+  }
 
 
 
@@ -38,9 +45,13 @@ const Header:React.FC = () => {
           <CustomLink to="/glass">
             <li>Glass</li>
           </CustomLink>
-          <CustomLink to="/login">
-            <li>Login</li>
-          </CustomLink>
+          {user?.email ? (
+            <li onClick={logoutHandler}>Logout</li>
+          ) : (
+            <CustomLink to="/login">
+              <li>Login</li>
+            </CustomLink>
+          )}
         </ul>
       </RightDiv>
     </FullHeaderdiv>
