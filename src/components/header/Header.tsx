@@ -16,6 +16,7 @@ const Header:React.FC = () => {
   };
 
   const logoutHandler = () => {
+    window.confirm("Are you sure you want to logout?");
     logOut();
   }
 
