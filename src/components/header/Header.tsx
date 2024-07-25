@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { Link, LinkProps, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UserAuth } from "../../context/AuthContext";
+
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Header:React.FC = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
 
   const {user, logOut} = UserAuth();
 
@@ -19,6 +23,23 @@ const Header:React.FC = () => {
     window.confirm("Are you sure you want to logout?");
     logOut();
   }
+
+  useEffect(() => {
+    if(user?.email) {
+      const getUser = async () => {
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setNickname(docSnap.data().nickname);
+        }
+      };
+      try {
+        getUser();
+      } catch(error) {
+        console.error(error);
+      }
+    }
+  }, [user]);
 
 
 

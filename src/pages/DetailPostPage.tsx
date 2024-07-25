@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+import EvaluationForm from "../components/evaluation/EvaluationForm";
 
 interface Cocktail {
   idDrink: string;
@@ -44,12 +45,14 @@ interface Cocktail {
 
 const DetailPostPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const no = searchParams.get('no');
+  const no = searchParams.get("no");
 
   const [cocktail, setCocktail] = useState<Cocktail | undefined>();
 
   const getDetail = async () => {
-    const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${no}`);
+    const response = await axios.get(
+      `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${no}`
+    );
     console.log(response.data.drinks[0]);
     setCocktail(response.data.drinks[0]);
   };
@@ -68,27 +71,30 @@ const DetailPostPage: React.FC = () => {
   } = cocktail || {};
 
   const ingredientsWithMeasures = Object.entries(rest)
-    .filter(([key, value]) => key.startsWith('strIngredient') && value)
+    .filter(([key, value]) => key.startsWith("strIngredient") && value)
     .map(([key, value], index) => {
       const measureKey = `strMeasure${index + 1}` as keyof typeof rest;
       const measure = rest[measureKey];
-      return `${value} : ${measure || ''}`.trim();
+      return `${value} : ${measure || ""}`.trim();
     });
 
   return (
-    <Container>
-      <img src={strDrinkThumb} alt={strDrink} />
-      <h1>{strDrink}</h1>
-      <p>Glass: {strGlass}</p>
-      <p>Alcoholic: {strAlcoholic == "Alcoholic" ? "Yes" : "No"}</p>
-      <p>Ingredients:</p>
-      <CustomUl>
-        {ingredientsWithMeasures.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </CustomUl>
-      <p>How to make: {strInstructions}</p>
-    </Container>
+    <div>
+      <Container>
+        <img src={strDrinkThumb} alt={strDrink} />
+        <h1>{strDrink}</h1>
+        <p>Glass: {strGlass}</p>
+        <p>Alcoholic: {strAlcoholic == "Alcoholic" ? "Yes" : "No"}</p>
+        <p>Ingredients:</p>
+        <CustomUl>
+          {ingredientsWithMeasures.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </CustomUl>
+        <p>How to make: {strInstructions}</p>
+      </Container>
+      <EvaluationForm />
+    </div>
   );
 };
 
@@ -134,4 +140,3 @@ const CustomUl = styled.ul`
   justify-content: center;
   gap: 10px;
 `;
-
