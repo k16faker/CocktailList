@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const { user, logIn } = UserAuth();
+  const { logIn, googleSignIn } = UserAuth();
 
   const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +25,14 @@ const LoginForm = () => {
     }
   };
 
+  const googleLoginHandler = async () => {
+    try {
+      await googleSignIn(navigate);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 
   return (
     <Container>
@@ -34,6 +42,7 @@ const LoginForm = () => {
             <CustomInput type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             <CustomLoginBtn type="submit">Login</CustomLoginBtn>
         </CustomForm>
+        <CustomLoginBtn onClick={googleLoginHandler}>Google Login</CustomLoginBtn>
 
         <CustomLink to="/signup">
             <p>or Signup</p>
