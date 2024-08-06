@@ -11,7 +11,7 @@ const Header:React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
 
-  const {user, logOut} = UserAuth();
+  const { user, logOut } = UserAuth();
 
 
   const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {

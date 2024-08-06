@@ -10,9 +10,10 @@ import EvaluationTemp from "./EvaluationTemp";
 interface Evaluation {
   nickname: string;
   evaluation: string;
+  email: string;
 }
 
-const EvaluationForm:React.FC = () => {
+const EvaluationForm:React.FC = () => { //댓글작성 폼 + 댓글 리스트 폼입니다.
   const { user } = UserAuth();
   const [searchParams] = useSearchParams();
   const no = searchParams.get("no");
@@ -35,6 +36,7 @@ const EvaluationForm:React.FC = () => {
       const evaluationList = evaluationSnapshot.docs.map(doc => ({
         nickname: doc.data().nickname,
         evaluation: doc.data().evaluation,
+        email: doc.data().email,
       }));
       setEvaluationList(evaluationList);
     } catch (error) {
@@ -49,7 +51,7 @@ const EvaluationForm:React.FC = () => {
     if(user?.email) {
       getNickname();
     }
-  }, []);
+  }, [user?.email]);
 
 
   // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,8 +66,9 @@ const EvaluationForm:React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const docRef = doc(db, no ?? "", nickname);
+    const docRef = doc(db, no ?? "", user.email);
     await setDoc(docRef, {
+      email: user?.email,
       nickname: nickname,
       evaluation: evaluation,
     });
@@ -87,7 +90,7 @@ const EvaluationForm:React.FC = () => {
       )}
       <CustomUl>
         {evaluationList.map((evaluation, index) => (
-          <EvaluationTemp key={index} nickname={evaluation.nickname} evaluation={evaluation.evaluation} />
+          <EvaluationTemp key={index} nickname={evaluation.nickname} evaluation={evaluation.evaluation} email={evaluation.email} />
         ))}
       </CustomUl>
     </Container>

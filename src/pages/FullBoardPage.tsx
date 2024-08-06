@@ -1,3 +1,6 @@
+//메인화면 - 칵테일 기본 추천 5개
+
+
 import styled from 'styled-components'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
@@ -6,38 +9,6 @@ import axios from 'axios'
 
 import SimplePost from '../components/SimplePost'
 
-const List = [
-    {
-        no: 1,
-        name: "Glenfiddich",
-        imgUrl: "https://via.placeholder.com/150",
-    },
-    {
-        no: 2,
-        name: "Glenlivet",
-        imgUrl: "https://via.placeholder.com/150",
-    },
-    {
-        no: 3,
-        name: "Glenmorangie",
-        imgUrl: "https://via.placeholder.com/150",
-    },
-    {
-        no: 4,
-        name: "Glen Allachie",
-        imgUrl: "https://via.placeholder.com/150",
-    },
-    {
-        no: 5,
-        name: "Glenfarclas",
-        imgUrl: "https://via.placeholder.com/150",
-    },
-    {
-        no: 6,
-        name: "GlenDronach",
-        imgUrl: "https://via.placeholder.com/150",
-    }
-]
 
 interface Cocktail {
     idDrink: string;

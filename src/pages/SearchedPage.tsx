@@ -1,3 +1,6 @@
+
+//검색결과를 나타내주는 페이지
+
 import React, {useState, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom'
 import axios from 'axios';

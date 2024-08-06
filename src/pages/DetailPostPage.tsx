@@ -1,3 +1,6 @@
+// 칵테일의 상세 정보를 보여주는 페이지
+
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
@@ -92,6 +95,9 @@ const DetailPostPage: React.FC = () => {
           ))}
         </CustomUl>
         <p>How to make: {strInstructions}</p>
+        <a href={`https://www.youtube.com/results?search_query=${strDrink}`} target="_blank" rel="noopener noreferrer">
+          More Info
+        </a>
       </Container>
       <EvaluationForm />
     </div>

@@ -1,4 +1,4 @@
-
+//글라스 기준으로 분류하는 페이지
 
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'

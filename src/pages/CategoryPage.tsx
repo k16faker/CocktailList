@@ -1,3 +1,5 @@
+// 카테고리 기준으로 칵테일 리스트를 보여주는 페이지입니다.
+
 
 
 import React, { useRef, useState } from 'react'
