@@ -1,65 +1,3 @@
-// import { createContext, useContext, useEffect, useState } from "react";
-// import { auth, db } from "../firebase";
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   signOut,
-//   onAuthStateChanged,
-//   GoogleAuthProvider,
-//   signInWithPopup,
-// } from "firebase/auth";
-// import { doc, setDoc } from "firebase/firestore";
-
-// const AuthContext = createContext();
-
-// export const AuthContextProvider = ({ children }) => {
-//   const [user, setUser] = useState({});
-
-//   const signUp = async (email, password, nickname) => {
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then((userCredential) => {
-//         const user = userCredential.user;
-//         setDoc(doc(db, "users", user.uid), {
-//           email: user.email,
-//           nickname: nickname,
-//         });
-//         setUser(user);
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         console.log(errorCode, errorMessage);
-//       });
-//   };
-
-//   function logIn(email, password) {
-//     signInWithEmailAndPassword(auth, email, password);
-//   }
-
-//   function logOut() {
-//     signOut(auth);
-//   }
-
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//       setUser(currentUser);
-//     });
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
-
-//   return (
-//     <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export function UserAuth() {
-//   return useContext(AuthContext);
-// }
-
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase";
@@ -71,17 +9,26 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   setPersistence,
-  browserSessionPersistence
+  browserSessionPersistence,
+  User,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
-const AuthContext = createContext();
+interface AuthContextValue {
+  signUp: (email: string, password: string, nickname: string) => Promise<void>;
+  logIn: (email: string, password: string) => Promise<void>;
+  logOut: () => Promise<void>;
+  googleSignIn: (navigate: any) => Promise<void>;
+  user: User | null;
+}
 
-export const AuthContextProvider = ({ children }) => {
+const AuthContext = createContext<AuthContextValue | null>(null);
 
-  const [user, setUser] = useState({});
+export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
-  const signUp = async (email, password, nickname) => {
+  const [user, setUser] = useState<User | null>(null);
+
+  const signUp = async (email: string, password: string, nickname: string): Promise<void> => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -98,23 +45,23 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
-  function logIn(email, password) {
+  const logIn = async (email: string, password: string): Promise<void> => {
     signInWithEmailAndPassword(auth, email, password).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
     });
-  }
+  };
 
-  function logOut() {
+  const logOut = async (): Promise<void> => {
     signOut(auth).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
     });
-  }
+  };
 
-  const googleSignIn = async (navigate) => {
+  const googleSignIn = async (navigate: any): Promise<void> => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({
       prompt: 'select_account'
@@ -154,6 +101,6 @@ export const AuthContextProvider = ({ children }) => {
   );
 };
 
-export function UserAuth() {
-  return useContext(AuthContext);
+export function UserAuth(): AuthContextValue {
+  return useContext(AuthContext)!;
 }
