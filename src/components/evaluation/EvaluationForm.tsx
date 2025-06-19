@@ -120,11 +120,13 @@ const Container = styled.div`
 const CustomForm = styled.form`
     display: flex;
     width: 80%;
-    padding: 10px 20px 10px 20px;
+    padding: 20px;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 
     input {
         width: 10%;
@@ -144,17 +146,19 @@ const CustomForm = styled.form`
 
     button {
         width: 100px;
-        height: 30px;
-        border-radius: 5px;
-        background-color: #f1f1f1;
+        height: 36px;
+        border-radius: 4px;
+        background-color: #ff7f50;
         font-size: 1rem;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
 
     }
-    
+
     button:hover {
-        background-color: #45a049;
-        color: white;
-        transition: 0.3s;
-        cursor: pointer;
+        background-color: #ff5722;
+        color: #fff;
     }
 `;
