@@ -85,42 +85,42 @@ export default Header;
 const FullHeaderdiv = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
-  border-bottom: 1px solid black;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   align-items: center;
-  font-family: Wittgenstein;
+  background: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 `;
 
 const PartDiv = styled.div`
   width: 300px;
   input {
     width: 100%;
-    padding: 5px 10px 5px 10px;
+    padding: 8px 12px;
     margin: 5px 0;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
   }
 
   button {
-    width: 65px;
-    height: 50px;
-    padding: 10px;
+    height: 40px;
+    padding: 0 12px;
     margin: 5px 0;
-    margin-left: 5px;
-    border-radius: 5px;
-    text-align: center;
-    background-color: #4caf50;
-    color: white;
+    margin-left: 8px;
+    border-radius: 4px;
+    border: none;
+    background-color: #ff7f50;
+    color: #fff;
     cursor: pointer;
+    font-size: 16px;
   }
 
   button:hover {
-    background-color: #45a049;
-    transition: 0.3s;
+    background-color: #ff5722;
+    transition: background-color 0.3s;
   }
 
   form {
@@ -144,14 +144,10 @@ const RightDiv = styled.div`
       padding: 14px 16px;
       text-decoration: none;
     }
-    li:visited {
-      color: black;
-    }
     li:hover {
       cursor: pointer;
-      
-      background-color: #f1f1f1;
-      transition: 0.3s;
+      background-color: #fafafa;
+      transition: background-color 0.3s;
     }
   }
 `;

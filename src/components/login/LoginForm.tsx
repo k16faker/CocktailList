@@ -58,41 +58,46 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 40px auto;
 `;
 
 const CustomForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 100%;
 `;
 const CustomInput = styled.input`
-    padding: 5px 10px 5px 10px;
-    margin: 10px;
-    border-radius: 5px;
-    font-size: 15px;
-    width: 200px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
     border: 1px solid #ccc;
     &:focus {
-        border: 1px solid #4caf50;
+        border: 1px solid #ff7f50;
     }
 `;
 
 const CustomLoginBtn = styled.button`
-    padding: 10px 20px 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    font-size: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
     cursor: pointer;
-    background-color: #f1f1f1;
+    background-color: #ff7f50;
     border:none;
-    transition: 0.3s;
+    color: #fff;
+    transition: background-color 0.3s;
     &:hover {
-        background-color: #4caf50;
-        color: white;
+        background-color: #ff5722;
+        color: #fff;
     }
 `;
 

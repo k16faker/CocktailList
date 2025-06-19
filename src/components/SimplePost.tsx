@@ -25,18 +25,18 @@ const SimplePost: React.FC<SimplePostProps> = ({imgUrl, name, no}) => {
 export default SimplePost;
 
 const SimplePostdli = styled.li`
-  padding-top: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #888888;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   width: 250px;
-  padding:5px;
   display:inline-block;
   text-align: center;
   margin-top: 10px;
   text-decoration: none;
-  color:black;
-  font-family: Witgenstein;
+  color: inherit;
+  background: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 
   p {
     font-size: 1rem;
@@ -47,12 +47,9 @@ const SimplePostdli = styled.li`
 
   &:hover {
     cursor: pointer;
-    background-color: #f1f1f1;
-    transition: 0.3s;
+    background-color: #fafafa;
+    transition: background-color 0.3s;
   }
-    &:visited {
-      color:black;
-    }
 `;
 
 const Image = styled.img`

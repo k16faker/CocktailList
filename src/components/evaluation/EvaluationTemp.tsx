@@ -42,11 +42,13 @@ export default EvaluationTemp
 const Container = styled.li`
     display: flex;
     align-items: center;
-    padding: 0px 15px 0px 15px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
+    padding: 10px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
     margin: 5px auto;
     width: 80%;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     h1 {
         margin-right: 10px;
         font-size: 1.5rem;
@@ -58,9 +60,16 @@ const Container = styled.li`
 
 const CustomBtn = styled.button`
     width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    background-color: #f1f1f1;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #ff7f50;
     font-size: 1rem;
     margin-left: auto;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: #ff5722;
+    }
 `;
